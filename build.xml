@@ -1,0 +1,50 @@
+<project name="sample" default="Init" basedir=".">
+
+<property name="JAVA_HOME" value="C:\Program Files\Java"/>
+	<target name="First">
+
+	<echo>OK Its Done</echo> 
+	
+	</target>
+	
+	<target name="Init">
+	
+		<mkdir dir="Hello-World"/>
+		
+		<ant antfile="../build.xml" dir="Hello-World" target="Test"/>
+		
+	</target>
+	
+	<target name="Test">
+	 
+		<touch file="Readme.txt"/>
+		<echo message="Read me first" file="Readme.txt"/>
+		
+		<ant antfile="../build.xml" dir="${basedir}" target="Copy_File" useNativeBasedir="true"/>
+		
+	</target>
+
+	
+	
+
+	<target name="Copy_File">
+	
+		<mkdir dir="destination"/>
+		
+		<copy todir="destination">
+			<fileset dir="Hello-World"/>
+		</copy>
+		<ant antfile="../build.xml" dir="Hello-World" target="Delete"/>	
+	</target>
+
+	<target name="Delete">
+		
+		<delete file="C:\Git folder\Hello-World\Readme.txt"/>
+	</target>
+	
+</project>
+
+
+
+
+
